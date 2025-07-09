@@ -1,0 +1,7 @@
+services:
+  itelecast:
+    image: itelecast:latest
+    volumes:
+      - ./app/db:/app/db      # Persist only the database
+    environment:
+      - TELEGRAM_TOKEN=xxxx
