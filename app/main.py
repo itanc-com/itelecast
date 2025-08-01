@@ -1,6 +1,5 @@
-def main():
-    print("Hello from itelecast!")
+from fastapi import FastAPI
 
+from app.core.fastapi.init_app import init_app
 
-if __name__ == "__main__":
-    main()
+app: FastAPI = init_app()
