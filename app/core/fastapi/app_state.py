@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 class AppStates(str, Enum):
     APP_START_TIME = "app_start_time"
+    HTTPX_CLIENT = "httpx_client"
 
 
 def set_app_state(app: FastAPI, key: AppStates, value):
