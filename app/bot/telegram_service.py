@@ -17,11 +17,11 @@ class TelegramService(Telegram_Service_Interface):
         }
         response = await self.client.post(url, data=payload)
         response.raise_for_status() # Raises HTTPError
-        return response.json()
+        return await response.json()
     
     async def get_me(self) -> dict:
         url = f"{self.base_url}/getMe"
         response = await self.client.get(url)
         response.raise_for_status() # Raises HTTPError
-        return response.json()
+        return await response.json()
     
