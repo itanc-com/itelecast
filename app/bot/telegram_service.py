@@ -1,10 +1,13 @@
 from httpx import AsyncClient
 
+from app.bot.telegram_service_interface import Telegram_Service_Interface
 
-class TelegramService:
+
+class TelegramService(Telegram_Service_Interface):
     def __init__(self, bot_token: str, client: AsyncClient):
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
         self.client = client
+        print("HTTPX Client:", self.client)
 
     async def send_message_to_channel(self, channel_id: str, text: str) -> dict:
         url = f"{self.base_url}/sendMessage"
