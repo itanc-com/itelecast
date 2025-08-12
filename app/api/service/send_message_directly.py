@@ -3,7 +3,7 @@ from app.common.exceptions import InvalidRequestException
 from app.core.pydantic.settings import settings
 
 
-class SendMessageToQueue:
+class SendMessageDirectly:
     def __init__(self, bot_service: Telegram_Service_Interface) -> None:
         self.bot_service = bot_service
 

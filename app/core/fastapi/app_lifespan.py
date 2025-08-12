@@ -5,8 +5,8 @@ from fastapi import FastAPI
 from httpx import AsyncClient
 
 from app.core.fastapi.app_state import AppStates, set_app_state
-from app.db.base import Base
-from app.db.session import sessionmanager
+from app.db_manager.base import Base
+from app.db_manager.session import sessionmanager
 
 
 @asynccontextmanager

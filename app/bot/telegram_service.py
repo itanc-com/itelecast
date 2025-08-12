@@ -11,10 +11,16 @@ class TelegramService(Telegram_Service_Interface):
 
     async def send_message_to_channel(self, channel_id: str, text: str) -> dict:
         url = f"{self.base_url}/sendMessage"
+        
+        #? other parameters should be added as needed
         payload = {
             "chat_id": channel_id,
             "text": text
         }
+        
+        #! Ensure not to get 429 Too Many Requests error
+        #! Implement retry logic or rate limiting if necessary
+        #! Consider using a more robust solution for production
         response = await self.client.post(url, data=payload)
         response.raise_for_status() # Raises HTTPError
         return await response.json()
