@@ -1,3 +1,4 @@
+import datetime as date
 from abc import ABC, abstractmethod
 
 from app.models.posts import Post
@@ -9,6 +10,5 @@ class PostInterface(ABC):
         raise NotImplementedError("insert method must be implemented by repository class")
 
     @abstractmethod
-    async def get_all(self, limit: int | None = None) -> list[Post]:
-        raise NotImplementedError("get_all method must be implemented by repository class")
-
+    async def update_scheduled_posts_job_id(self, current_date: date, new_job_id: str, limit: int) -> list[Post]:
+        raise NotImplementedError("update_scheduled_posts_job_id method must be implemented by repository class")

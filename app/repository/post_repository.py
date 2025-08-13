@@ -1,3 +1,5 @@
+import datetime as date
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -23,3 +25,22 @@ class PostRepository(PostInterface):
             query = query.limit(limit)
         result = await self.session.execute(query)
         return result.scalars().all()
+
+    async def update_scheduled_posts_job_id(self, current_date: date, new_job_id: str, limit: int) -> list[Post]:
+        """
+        Update the job_id of posts that are scheduled on or before the current_date (up to limit)
+        """
+        query = select(Post).where(Post.date_scheduled <= current_date).limit(limit)
+        result = await self.session.execute(query)
+        posts = result.scalars().all()
+        
+        for post in posts:
+            post.job_id = new_job_id
+    
+        await self.session.commit()  # Single commit for better performance
+    
+        # Refresh all posts to get updated state
+        for post in posts:
+            await self.session.refresh(post)
+            
+        return posts
