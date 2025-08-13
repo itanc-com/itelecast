@@ -6,7 +6,7 @@ from app.core.fastapi.routers import router_v1
 from app.core.logger.config import configure_logger
 from app.core.middleware.setup import setup_middlewares
 from app.core.pydantic.settings import settings
-from app.utils.date_time import get_utc_now
+from app.utils.datetime import get_utc_now
 
 from .app_state import AppStates, get_app_state
 
