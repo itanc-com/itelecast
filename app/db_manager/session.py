@@ -7,7 +7,7 @@ from app.core.pydantic.settings import settings
 from .session_manager import SessionManager
 
 engine_options = {
-    "echo": getattr(settings, "echo_sql", False),
+    "echo": settings.echo_sql,
     "connect_args": {"check_same_thread": False} if settings.database_uri.startswith("sqlite") else {},
 }
 
