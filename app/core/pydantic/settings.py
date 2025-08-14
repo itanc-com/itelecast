@@ -24,10 +24,15 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
     )
 
+    @property
+    def echo_sql(self) -> bool:
+        """Enable SQL echo for development environment"""
+        return self.environment == EnvironmentType.DEVELOPMENT
+
 
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
 
 
-settings: Settings = get_settings() 
+settings: Settings = get_settings()
